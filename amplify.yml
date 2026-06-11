@@ -3,7 +3,10 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm install --prefer-offline --legacy-peer-deps
+        # Force a modern Node.js runtime environment 
+        - nvm use 20 || nvm install 20
+        # Remove --prefer-offline to ensure fresh dependencies fetch properly
+        - npm install --legacy-peer-deps
     build:
       commands:
         - npm run build
