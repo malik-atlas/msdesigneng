@@ -1,4 +1,4 @@
-# Abdullah Agency - Next.js, Tailwind CSS & Framer Motion
+# Malik Smith Design Engineer - Next.js, Tailwind CSS & Framer Motion
 
 ![Abdullah Agency](/public/agency.PNG)
 
