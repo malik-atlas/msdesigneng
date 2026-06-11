@@ -4,8 +4,9 @@ frontend:
     preBuild:
       commands:
         - nvm use 20 || nvm install 20
-        - corepack enable
-        # Disable strict build-script blocks for container execution
+        # Install a decoupled global binary to bypass the container's dynamic import block
+        - npm install -g pnpm
+        # Permit native compilation engines to run their lifecycle assets
         - pnpm config set ignore-scripts false
         - pnpm install --no-frozen-lockfile
     build:
