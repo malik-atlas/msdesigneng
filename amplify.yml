@@ -3,14 +3,14 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Force a modern Node.js runtime environment 
         - nvm use 20 || nvm install 20
-        # Remove --prefer-offline to ensure fresh dependencies fetch properly
-        - npm install --legacy-peer-deps
+        # Add loglevel error to stop large warning streams from blocking logs
+        - npm install --legacy-peer-deps --loglevel error
     build:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: .next
+    # Set this to dist to match Astro / Vite build outputs
+    baseDirectory: dist
     files:
       - '**/*'
