@@ -3,14 +3,13 @@ frontend:
   phases:
     preBuild:
       commands:
-        - nvm use 20 || nvm install 20
+        # Step up to Node 22 to provide the node:sqlite module
+        - nvm use 22 || nvm install 22
         - npm install -g pnpm
-        # Force pnpm to completely ignore all long-running lifecycle scripts
         - pnpm config set ignore-scripts true
         - pnpm install --no-frozen-lockfile --prod=false
     build:
       commands:
-        # Pass an environment flag to force the compiler to bypass script halts
         - pnpm run build
   artifacts:
     baseDirectory: dist
