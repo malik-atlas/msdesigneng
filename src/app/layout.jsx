@@ -3,8 +3,8 @@ import "./globals.css";
 
 export const metadata = {
   title: {
-    template: "Abdullah",
-    default: "Abdullah",
+    template: "Malik Smith - Design Engineer",
+    default: "Malik Smith - Design Engineer",
   },
 };
 
