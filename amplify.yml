@@ -4,13 +4,16 @@ frontend:
     preBuild:
       commands:
         - nvm use 20 || nvm install 20
-        # Add loglevel error to stop large warning streams from blocking logs
-        - npm install --legacy-peer-deps --loglevel error
+        # Enable Corepack to utilize the native package manager setup
+        - corepack enable
+        # Install pnpm and force it to handle peer conflicts gracefully
+        - corepack prepare pnpm@latest --activate
+        - pnpm config set auto-install-peers true
+        - pnpm install --no-frozen-lockfile
     build:
       commands:
-        - npm run build
+        - pnpm run build
   artifacts:
-    # Set this to dist to match Astro / Vite build outputs
     baseDirectory: dist
     files:
       - '**/*'
