@@ -3,11 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Step up to Node 22 to provide the node:sqlite module
         - nvm use 22 || nvm install 22
         - npm install -g pnpm
         - pnpm config set ignore-scripts true
-        - pnpm install --no-frozen-lockfile --prod=false
+        # Use immutable installs to skip deep structural tree mutation calculations
+        - pnpm install --frozen-lockfile --prod=false
     build:
       commands:
         - pnpm run build
@@ -15,3 +15,8 @@ frontend:
     baseDirectory: dist
     files:
       - '**/*'
+  cache:
+    paths:
+      # Cache pnpm global virtual store and local workspace assets
+      - .pnpm-store/**/*
+      - node_modules/**/*
